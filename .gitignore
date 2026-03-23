@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.pyo
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Next.js
+.next/
+out/
+
+# Build output
+dist/
+build/
+
+# Python virtual environments
+venv/
+.venv/
+env/
+
+# Database files
+*.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Scraped data (large JSON files)
+data-scraping/tile_products.json
+data-scraping/tile_product_ids.json
+
+# Package lock (frontend — regenerated on install)
+# Keep package-lock.json if you want reproducible builds; remove this line if so
+# apps/frontend/package-lock.json
