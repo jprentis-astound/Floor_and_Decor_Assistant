@@ -24,6 +24,7 @@ env/
 
 # Database files
 *.db
+!roomy-assistant/packages/agent/tiles.db
 
 # IDE
 .vscode/
