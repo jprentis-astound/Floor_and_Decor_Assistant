@@ -1,10 +1,9 @@
-import { CopilotKit } from "@copilotkit/react-core";
-import "@copilotkit/react-ui/styles.css";
 import "./globals.css";
 
 export const metadata = {
-  title: "Roomy — Floor & Decor Assistant",
-  description: "AI-powered tile search assistant for Floor & Decor",
+  title: "Help Center — Floor & Decor",
+  description:
+    "Get help with flooring, installation, orders, and more from Roomy, your Floor & Decor assistant.",
 };
 
 export default function RootLayout({
@@ -14,14 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <CopilotKit
-          runtimeUrl="/api/copilotkit"
-          agent="roomy_assistant"
-        >
-          {children}
-        </CopilotKit>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

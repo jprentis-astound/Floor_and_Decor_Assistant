@@ -3,21 +3,33 @@
 @tailwind utilities;
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  background: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #fafafa;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* CopilotKit sidebar overrides */
-.copilotKitSidebar {
-  --copilot-kit-primary-color: #1b5e20;
+/* ─── Chat container — expandable card ────────────────────────────────── */
+
+.chat-container {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Widen the sidebar panel to 33% of the viewport */
-.copilotKitSidebar .copilotKitWindow {
-  width: 33vw !important;
-}
+/* ─── Scrollbar ───────────────────────────────────────────────────────── */
 
-.copilotKitSidebarContentWrapper.sidebarExpanded {
-  margin-right: 33vw !important;
-}
+.chat-container ::-webkit-scrollbar { width: 5px; }
+.chat-container ::-webkit-scrollbar-track { background: transparent; }
+.chat-container ::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
+
+/* ─── Tile cards horizontal scroll ────────────────────────────────────── */
+
+.scrollbar-thin::-webkit-scrollbar { height: 4px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
