@@ -137,6 +137,45 @@ export default function RoomyApp() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const streamingContentRef = useRef("");
   const streamingElRef = useRef<HTMLDivElement>(null);
+  const tokenQueueRef = useRef<string[]>([]);
+  const renderTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Controlled token renderer — drips tokens at a readable pace
+  const startTokenRenderer = useCallback(() => {
+    if (renderTimerRef.current) return;
+    renderTimerRef.current = setInterval(() => {
+      const queue = tokenQueueRef.current;
+      if (queue.length === 0) return;
+      // Render a few characters at a time for smooth flow
+      const batch = queue.splice(0, Math.min(3, queue.length));
+      streamingContentRef.current += batch.join("");
+      if (streamingElRef.current) {
+        const html = streamingContentRef.current
+          .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.*?)\*/g, '<em>$1</em>')
+          .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer" class="text-[#CC0000] underline">$1</a>')
+          .replace(/^[-•] (.+)/gm, '<li class="ml-4 list-disc">$1</li>')
+          .replace(/^(\d+)\. (.+)/gm, '<li class="ml-4 list-decimal">$2</li>')
+          .replace(/\n\n/g, '<div class="h-3"></div>')
+          .replace(/\n/g, "<br/>");
+        streamingElRef.current.innerHTML = html + '<span class="inline-block w-1 h-3.5 bg-[#CC0000] ml-0.5 animate-pulse rounded-sm align-middle"></span>';
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 30); // ~30ms per batch = smooth typewriter
+  }, []);
+
+  const stopTokenRenderer = useCallback(() => {
+    if (renderTimerRef.current) {
+      clearInterval(renderTimerRef.current);
+      renderTimerRef.current = null;
+    }
+    // Flush remaining tokens
+    if (tokenQueueRef.current.length > 0) {
+      streamingContentRef.current += tokenQueueRef.current.join("");
+      tokenQueueRef.current = [];
+    }
+  }, []);
 
   useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, agentStatus]);
   useEffect(() => { if (chatOpen) setTimeout(() => { chatRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }); inputRef.current?.focus(); }, 350); }, [chatOpen]);
@@ -154,20 +193,11 @@ export default function RoomyApp() {
     streamChat(text.trim(), threadId,
       (token) => {
         setAgentStatus(null);
-        streamingContentRef.current += token;
-        if (streamingElRef.current) {
-          const html = streamingContentRef.current
-            .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer" class="text-[#CC0000] underline">$1</a>')
-            .replace(/^[-•] (.+)/gm, '<li class="ml-4 list-disc">$1</li>')
-            .replace(/^(\d+)\. (.+)/gm, '<li class="ml-4 list-decimal">$2</li>')
-            .replace(/\n\n/g, '<div class="h-2"></div>')
-            .replace(/\n/g, "<br/>");
-          streamingElRef.current.innerHTML = html + '<span class="inline-block w-1 h-3.5 bg-[#CC0000] ml-0.5 animate-pulse rounded-sm align-middle"></span>';
-          messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        // Queue individual characters for smooth rendering
+        for (const char of token) {
+          tokenQueueRef.current.push(char);
         }
+        startTokenRenderer();
       },
       (name) => { setAgentStatus(name === "search_tile_products" ? "searching" : name === "show_video" ? "video" : "thinking"); },
       (name, result) => {
@@ -179,6 +209,7 @@ export default function RoomyApp() {
         }
       },
       () => {
+        stopTokenRenderer();
         setMessages((prev) => { const u = [...prev]; const l = u[u.length - 1]; if (l?.role === "assistant") u[u.length - 1] = { ...l, content: streamingContentRef.current, done: true }; return u; });
         streamingContentRef.current = "";
         setIsStreaming(false);
@@ -186,6 +217,7 @@ export default function RoomyApp() {
       },
       (err) => {
         console.error("Chat error:", err);
+        stopTokenRenderer();
         setMessages((prev) => { const u = [...prev]; const l = u[u.length - 1]; if (l?.role === "assistant") u[u.length - 1] = { ...l, content: streamingContentRef.current || "Sorry, something went wrong.", done: true }; return u; });
         streamingContentRef.current = "";
         setIsStreaming(false);
