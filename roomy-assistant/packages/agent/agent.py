@@ -34,6 +34,7 @@ def get_llm():
         model=MODEL_ID,
         max_tokens=4096,
         anthropic_api_key=os.getenv("ANTHROPIC_API_KEY"),
+        max_retries=3,
     )
 
 
