@@ -1,8 +1,8 @@
 [phases.setup]
-nixPkgs = ["python311", "python311Packages.pip", "gcc", "stdenv.cc"]
+nixPkgs = ["python311Full"]
 
 [phases.install]
-cmds = ["cd roomy-assistant/packages/agent && python3 -m pip install --no-cache-dir -r requirements.txt"]
+cmds = ["cd roomy-assistant/packages/agent && python3 -m ensurepip --upgrade && python3 -m pip install --no-cache-dir -r requirements.txt"]
 
 [start]
-cmd = "cd roomy-assistant/packages/agent && python -m uvicorn server:app --host 0.0.0.0 --port ${PORT:-8080}"
+cmd = "cd roomy-assistant/packages/agent && python3 -m uvicorn server:app --host 0.0.0.0 --port ${PORT:-8080}"
