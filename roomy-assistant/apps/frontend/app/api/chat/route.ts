@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 
-const BACKEND_URL = process.env.AGENT_URL ?? "http://localhost:8080";
+const BACKEND_URL = process.env.AGENT_URL ?? "https://flooranddecorassistant-production.up.railway.app";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
