@@ -220,22 +220,52 @@ export default function RoomyApp() {
       </header>
 
       {/* ─── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative h-[200px] overflow-hidden">
-        <img src="https://i8.amplience.net/i/flooranddecor/design-services-re-hero-f0?w=1440&fmt=auto&qlt=80&sm=aspect&aspect=1440:300&$poi$" alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+      <section className="relative h-[320px] md:h-[380px] overflow-hidden">
+        <img src="https://i8.amplience.net/i/flooranddecor/design-services-re-hero-f0?w=1920&fmt=auto&qlt=85&sm=aspect&aspect=1920:400&$poi$" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
         <div className="relative max-w-[1200px] mx-auto px-8 h-full flex items-center">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight">FREE DESIGN SERVICES</h2>
-            <p className="text-gray-300 text-sm mt-1">AT YOUR LOCAL FLOOR &amp; DECOR</p>
-            <a href="https://www.flooranddecor.com/design-services" target="_blank" rel="noreferrer" className="mt-3 inline-block bg-[#CC0000] hover:bg-[#aa0000] text-white font-semibold text-xs px-5 py-2 rounded transition-colors">SCHEDULE NOW</a>
+          <div className="max-w-lg">
+            <h2 className="text-3xl md:text-[42px] font-black text-white leading-tight tracking-tight">
+              FREE DESIGN<br />SERVICES
+            </h2>
+            <p className="text-gray-200 text-base md:text-lg mt-2 font-light tracking-wide">AT YOUR LOCAL FLOOR &amp; DECOR</p>
+            <a
+              href="https://www.flooranddecor.com/design-services"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-5 inline-block border-2 border-white text-white font-bold text-sm uppercase tracking-[0.14em] px-10 py-3 hover:bg-[#CC0000] hover:border-[#CC0000] transition-all duration-200"
+            >
+              Schedule Now
+            </a>
           </div>
         </div>
       </section>
 
       {/* ─── Greeting ────────────────────────────────────────────── */}
-      <section className="max-w-[1200px] mx-auto px-8 pt-14 pb-10 text-center">
-        <h1 className="text-[28px] md:text-[34px] font-bold text-gray-900 tracking-tight">How can we help you?</h1>
-        <p className="mt-2 text-gray-400 text-[15px]">Search our help center or ask Roomy, your AI assistant</p>
+      <section className="relative bg-[#1a1a1a] overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(204,0,0,0.08),transparent_70%)]" />
+        <div className="relative max-w-[1200px] mx-auto px-8 py-16 md:py-20 text-center">
+          <h1 className="text-[32px] md:text-[44px] font-bold text-white tracking-tight leading-tight">
+            How can we help you?
+          </h1>
+          <p className="mt-3 text-gray-400 text-[16px] md:text-[18px] max-w-xl mx-auto leading-relaxed">
+            Search our help center or ask <span className="text-[#CC0000] font-semibold">Roomy</span>, your AI assistant
+          </p>
+          <div className="mt-8 flex items-center justify-center gap-6 text-[12px] text-gray-500">
+            <span className="flex items-center gap-1.5">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" /></svg>
+              AI-powered answers
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6z" /></svg>
+              1,192 products
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" /></svg>
+              Video tutorials
+            </span>
+          </div>
+        </div>
       </section>
 
       {/* ─── Category Cards ──────────────────────────────────────── */}
@@ -336,10 +366,11 @@ export default function RoomyApp() {
             opacity: chatOpen ? 1 : 0,
           }}
         >
-          <div className="h-full flex flex-col bg-white rounded-t-2xl shadow-2xl shadow-black/15 border border-b-0 border-gray-200">
-            {/* Frosted dark header */}
-            <div className="bg-[#1a1a1a]/90 backdrop-blur-2xl text-white px-5 py-3 flex items-center justify-between rounded-t-2xl flex-shrink-0">
-              <div className="flex items-center gap-3">
+          <div className="h-full flex flex-col rounded-t-2xl shadow-2xl shadow-black/20 overflow-hidden">
+            {/* Dark header with red accent glow */}
+            <div className="relative bg-[#1a1a1a] text-white px-5 py-3.5 flex items-center justify-between rounded-t-2xl flex-shrink-0 overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(204,0,0,0.12),transparent_60%)] pointer-events-none" />
+              <div className="relative flex items-center gap-3">
                 <div className="w-8 h-8 bg-gradient-to-br from-[#CC0000] to-[#8B0000] rounded-lg flex items-center justify-center shadow-md shadow-red-900/30">
                   <span className="font-bold text-[11px]">R</span>
                 </div>
@@ -351,16 +382,16 @@ export default function RoomyApp() {
                       AI
                     </span>
                   </p>
-                  <p className="text-[10px] text-gray-500">Floor &amp; Decor</p>
+                  <p className="text-[10px] text-gray-500">Floor &amp; Decor Help Center</p>
                 </div>
               </div>
-              <button onClick={() => setChatOpen(false)} className="w-6 h-6 rounded bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">
+              <button onClick={() => setChatOpen(false)} className="relative w-6 h-6 rounded bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">
                 <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
               </button>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 min-h-0 overflow-y-auto px-5 py-4 space-y-5 bg-white">
+            <div className="flex-1 min-h-0 overflow-y-auto px-5 py-4 space-y-5 bg-[#f8f8f8]">
               {messages.length === 0 && (
                 <div className="text-center py-10">
                   <p className="text-[14px] text-gray-400">Ask me anything about flooring, products, or services.</p>
@@ -412,11 +443,12 @@ export default function RoomyApp() {
           </div>
         </div>
 
-        {/* Always-visible bottom bar */}
-        <div className="bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+        {/* Always-visible bottom bar — white with dark input area */}
+        <div className="bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
           <div className="max-w-[860px] mx-auto px-5 py-3">
             <form onSubmit={handleSubmit} className="flex items-end gap-3">
               <div
+                id="roomy-chat-trigger"
                 className="flex items-center gap-3 flex-shrink-0 cursor-pointer"
                 onClick={() => { if (!chatOpen) { setChatOpen(true); setTimeout(() => inputRef.current?.focus(), 300); } }}
               >
@@ -433,7 +465,8 @@ export default function RoomyApp() {
                 placeholder="Ask Roomy a question..."
                 rows={1}
                 disabled={isStreaming}
-                className="flex-1 rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-[14px] text-gray-800 outline-none resize-none leading-relaxed placeholder:text-gray-400 focus:border-[#CC0000]/40 focus:ring-2 focus:ring-[#CC0000]/10 focus:bg-white disabled:opacity-40 transition-all"
+                className="flex-1 rounded-xl border border-white/10 bg-[#1a1a1a]/70 backdrop-blur-md px-4 py-2.5 text-[14px] text-white outline-none resize-none leading-relaxed placeholder:text-gray-400 focus:border-[#CC0000]/50 disabled:opacity-40 transition-all"
+                style={{ backgroundImage: "radial-gradient(circle at 20% 50%, rgba(204,0,0,0.1), transparent 60%)" }}
               />
               <button
                 type="submit"
@@ -443,6 +476,14 @@ export default function RoomyApp() {
                 <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" /></svg>
               </button>
             </form>
+            <div className="flex items-center justify-center gap-5 mt-2 text-[10px] text-gray-400">
+              <span className="flex items-center gap-1">
+                <span className="w-1 h-1 bg-emerald-400 rounded-full animate-pulse" />
+                Powered by Roomy AI
+              </span>
+              <span>&middot;</span>
+              <a href="https://www.flooranddecor.com" target="_blank" rel="noreferrer" className="hover:text-gray-600 transition-colors">flooranddecor.com</a>
+            </div>
           </div>
         </div>
       </div>
