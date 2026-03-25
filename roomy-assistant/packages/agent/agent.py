@@ -24,7 +24,7 @@ from search import search_tiles, get_available_filters
 
 load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
-MODEL_ID = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
+MODEL_ID = os.getenv("ANTHROPIC_MODEL", "claude-haiku-4-5-20251001")
 
 
 # ── LLM Factory ──────────────────────────────────────────────────────────────
